@@ -1,3 +1,4 @@
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 
 import { signInWithGooglePopup } from "../../firebase/firebase.auth.js";
@@ -17,10 +18,17 @@ class SignIn extends React.Component {
     };
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
-    this.setState({ email: "", password: "" });
+    const { email, password } = this.state;
+
+    try {
+      await signInWithEmailAndPassword(getAuth(), email, password);
+      this.setState({ email: "", password: "" });
+    } catch (error) {
+      console.error("could not login with username and password", error);
+    }
   };
 
   handleChange = (event) => {
