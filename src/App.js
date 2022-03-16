@@ -1,10 +1,13 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { connect } from "react-redux";
 
 import "./firebase/firebase.init";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { createUserProfileDocument } from "./firebase/firebase.firestore";
 import { onSnapshot } from "firebase/firestore";
+
+import { setCurrentUser } from "./redux/user/user.actions";
 
 import HomePage from "./pages/homepage/homepage.comp";
 import ShopPage from "./pages/shop/shop.comp";
@@ -14,17 +17,11 @@ import LoginPage from "./pages/login/login.comp";
 import "./App.css";
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      currentUser: null,
-    };
-  }
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = onAuthStateChanged(
       getAuth(),
       async (userAuth) => {
@@ -32,15 +29,14 @@ class App extends React.Component {
           const userRef = await createUserProfileDocument(userAuth);
 
           onSnapshot(userRef, (snapshot) => {
-            this.setState({
-              currentUser: {
-                id: snapshot.id,
-                ...snapshot.data(),
-              },
+            setCurrentUser({
+              id: snapshot.id,
+              ...snapshot.data(),
             });
           });
         }
-        this.setState({ currentUser: userAuth });
+
+        setCurrentUser(userAuth);
       }
     );
   }
@@ -52,7 +48,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser} />
+        <Header />
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
@@ -63,4 +59,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(null, mapDispatchToProps)(App);
