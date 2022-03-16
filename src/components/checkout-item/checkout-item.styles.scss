@@ -23,11 +23,27 @@
   }
 
   .quantity {
-    padding-left: 20px;
+    user-select: none;
+    display: flex;
+
+    .arrow {
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    .value {
+      margin: 0 10px;
+    }
   }
 
   .remove-button {
     padding-left: 12px;
     cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
   }
 }
