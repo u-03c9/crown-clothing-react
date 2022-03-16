@@ -12,9 +12,10 @@ import { selectCurrentUser } from "./redux/user/user.selectors";
 import { setCurrentUser } from "./redux/user/user.actions";
 
 import HomePage from "./pages/homepage/homepage.comp";
-import ShopPage from "./pages/shop/shop.comp";
 import Header from "./components/header/header.comp";
 import LoginPage from "./pages/login/login.comp";
+import ShopPage from "./pages/shop/shop.comp";
+import CheckoutPage from "./pages/checkout/checkout.comp";
 
 import "./App.css";
 
@@ -53,9 +54,10 @@ class App extends React.Component {
         <Header />
         <Routes>
           <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/checkout" element={<CheckoutPage />} />
           <Route path="/shop" element={<ShopPage />} />
-
           <Route
+            exact
             path="/login"
             element={
               this.props.currentUser ? (
