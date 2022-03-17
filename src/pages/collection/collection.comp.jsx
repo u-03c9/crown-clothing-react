@@ -7,7 +7,7 @@ import CollectionItem from "../../components/collection-item/collection-item.com
 
 import "./collection.styles.scss";
 
-const CategoryPage = () => {
+const CollectionPage = () => {
   const params = useParams();
   const collectionId = params.collectionId;
 
@@ -26,4 +26,4 @@ const CategoryPage = () => {
   );
 };
 
-export default CategoryPage;
+export default CollectionPage;
