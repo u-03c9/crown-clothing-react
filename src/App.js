@@ -15,6 +15,7 @@ import HomePage from "./pages/homepage/homepage.comp";
 import Header from "./components/header/header.comp";
 import LoginPage from "./pages/login/login.comp";
 import ShopPage from "./pages/shop/shop.comp";
+import CollectionsOverview from "./components/collections-overview/collections-overview.comp";
 import CollectionPage from "./pages/collection/collection.comp";
 import CheckoutPage from "./pages/checkout/checkout.comp";
 
@@ -56,8 +57,10 @@ class App extends React.Component {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/checkout" element={<CheckoutPage />} />
-          <Route path="/shop" element={<ShopPage />} />
-          <Route path="/shop/:collectionId" element={<CollectionPage />} />
+          <Route path="/shop" element={<ShopPage />}>
+            <Route path="/shop/" element={<CollectionsOverview />} />
+            <Route path="/shop/:collectionId" element={<CollectionPage />} />
+          </Route>
           <Route
             exact
             path="/login"
