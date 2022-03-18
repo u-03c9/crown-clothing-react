@@ -40,11 +40,11 @@ function* signInWithGoogle() {
   }
 }
 
-export function* onGoogleSignInStart() {
+function* onGoogleSignInStart() {
   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
 
-export function* signInWithEmail({ payload: { email, password } }) {
+function* signInWithEmail({ payload: { email, password } }) {
   const auth = getAuth();
   try {
     const { user } = yield signInWithEmailAndPassword(auth, email, password);
@@ -86,7 +86,7 @@ function* onSignOutStart() {
   yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
 }
 
-export function* userSagas() {
+export default function* userSagas() {
   yield all([
     call(onGoogleSignInStart),
     call(onEmailSignInStart),
