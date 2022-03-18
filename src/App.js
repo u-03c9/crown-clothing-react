@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-import "./firebase/firebase.init";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { createUserProfileDocument } from "./firebase/firebase.firestore";
 import { onSnapshot } from "firebase/firestore";
