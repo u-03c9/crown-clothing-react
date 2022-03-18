@@ -8,6 +8,7 @@ import {
 import { getDoc } from "firebase/firestore";
 
 import { createUserProfileDocument } from "../../firebase/firebase.firestore";
+import { getCurrentUser } from "../../firebase/firebase.auth";
 import { signInFailure, signInSuccess } from "./user.actions";
 
 import UserActionTypes from "./user.types";
@@ -52,6 +53,24 @@ export function* onEmailSignInStart() {
   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
+function* isUserAuthenticated() {
+  try {
+    const user = yield getCurrentUser();
+    if (!user) return;
+    yield getSnapshotFromUserAuth(user);
+  } catch (error) {
+    yield put(signInFailure(error));
+  }
+}
+
+function* onCheckUserSession() {
+  yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated);
+}
+
 export function* userSagas() {
-  yield all([call(onGoogleSignInStart), call(onEmailSignInStart)]);
+  yield all([
+    call(onGoogleSignInStart),
+    call(onEmailSignInStart),
+    call(onCheckUserSession),
+  ]);
 }
