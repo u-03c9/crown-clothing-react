@@ -1,26 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 
-class ShopPage extends React.Component {
-  componentDidMount() {
-    const { fetchCollectionsStart } = this.props;
-    fetchCollectionsStart();
-  }
+const ShopPage = () => {
+  const dispatch = useDispatch();
 
-  render() {
-    return (
-      <div className="shop-page">
-        <Outlet />
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    dispatch(fetchCollectionsStart());
+  }, [dispatch]);
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
-});
+  return (
+    <div className="shop-page">
+      <Outlet />
+    </div>
+  );
+};
 
-export default connect(null, mapDispatchToProps)(ShopPage);
+export default ShopPage;

@@ -9,8 +9,6 @@ import {
 import { convertCollectionsSnapshoptToMap } from "../../firebase/firebase.firestore";
 
 function* fetchCollectionsAsync() {
-  yield console.log("fetchCollectionsAsync");
-
   try {
     const db = getFirestore();
     const collectionsRef = collection(db, "collections");

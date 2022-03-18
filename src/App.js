@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useSelector, useDispatch } from "react-redux";
 
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
@@ -16,49 +15,34 @@ import CheckoutPage from "./pages/checkout/checkout.comp";
 
 import "./App.css";
 
-class App extends React.Component {
-  componentDidMount() {
-    const { checkUserSession } = this.props;
-    checkUserSession();
-  }
+const App = () => {
+  const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
 
-  render() {
-    return (
-      <div>
-        <Header />
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/checkout" element={<CheckoutPage />} />
-          <Route path="/shop" element={<ShopPage />}>
-            <Route path="/shop/" element={<CollectionsOverviewContainer />} />
-            <Route
-              path="/shop/:collectionId"
-              element={<CollectionContainer />}
-            />
-          </Route>
-          <Route
-            exact
-            path="/login"
-            element={
-              this.props.currentUser ? (
-                <Navigate to="/" replace={true} />
-              ) : (
-                <LoginPage />
-              )
-            }
-          />
-        </Routes>
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    dispatch(checkUserSession());
+  }, [dispatch]);
 
-const mapDispatchToProps = (dispatch) => ({
-  checkUserSession: () => dispatch(checkUserSession()),
-});
+  return (
+    <div>
+      <Header />
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/checkout" element={<CheckoutPage />} />
+        <Route path="/shop" element={<ShopPage />}>
+          <Route path="/shop/" element={<CollectionsOverviewContainer />} />
+          <Route path="/shop/:collectionId" element={<CollectionContainer />} />
+        </Route>
+        <Route
+          exact
+          path="/login"
+          element={
+            currentUser ? <Navigate to="/" replace={true} /> : <LoginPage />
+          }
+        />
+      </Routes>
+    </div>
+  );
+};
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

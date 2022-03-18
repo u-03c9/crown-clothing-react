@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {
   addItemToCart,
@@ -9,13 +9,14 @@ import {
 
 import "./checkout-item.styles.scss";
 
-const CheckoutItem = ({
-  cartItem,
-  addItem,
-  removeSingleItem,
-  removeWholeItem,
-}) => {
+const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
+
+  const dispatch = useDispatch();
+  const addItem = () => dispatch(addItemToCart(cartItem));
+  const removeSingleItem = () => dispatch(removeSingleItemFromCart(cartItem));
+  const removeWholeItem = () => dispatch(removeWholeItemFromCart(cartItem));
+
   return (
     <div className="checkout-item">
       <div className="image-container">
@@ -23,26 +24,20 @@ const CheckoutItem = ({
       </div>
       <span className="name">{name}</span>
       <span className="quantity">
-        <div className="arrow" onClick={() => removeSingleItem(cartItem)}>
+        <div className="arrow" onClick={removeSingleItem}>
           &#10094;
         </div>
         <span className="value">{quantity}</span>
-        <div className="arrow" onClick={() => addItem(cartItem)}>
+        <div className="arrow" onClick={addItem}>
           &#10095;
         </div>
       </span>
       <span className="price">${quantity * price}</span>
-      <div className="remove-button" onClick={() => removeWholeItem(cartItem)}>
+      <div className="remove-button" onClick={removeWholeItem}>
         &#10005;
       </div>
     </div>
   );
 };
 
-const mapDispatchToState = (dispatch) => ({
-  addItem: (item) => dispatch(addItemToCart(item)),
-  removeSingleItem: (item) => dispatch(removeSingleItemFromCart(item)),
-  removeWholeItem: (item) => dispatch(removeWholeItemFromCart(item)),
-});
-
-export default connect(null, mapDispatchToState)(CheckoutItem);
+export default CheckoutItem;
