@@ -8,7 +8,6 @@ import { createUserProfileDocument } from "./firebase/firebase.firestore";
 import { onSnapshot } from "firebase/firestore";
 
 import { selectCurrentUser } from "./redux/user/user.selectors";
-import { setCurrentUser } from "./redux/user/user.actions";
 
 import HomePage from "./pages/homepage/homepage.comp";
 import Header from "./components/header/header.comp";
@@ -24,14 +23,11 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-
     // this.unsubscribeFromAuth = onAuthStateChanged(
     //   getAuth(),
     //   async (userAuth) => {
     //     if (userAuth) {
     //       const userRef = await createUserProfileDocument(userAuth);
-
     //       onSnapshot(userRef, (snapshot) => {
     //         setCurrentUser({
     //           id: snapshot.id,
@@ -39,7 +35,6 @@ class App extends React.Component {
     //         });
     //       });
     //     }
-
     //     setCurrentUser(userAuth);
     //   }
     // );
@@ -84,8 +79,4 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
