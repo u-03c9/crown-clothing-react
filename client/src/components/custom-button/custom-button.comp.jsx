@@ -1,23 +1,34 @@
 import React from "react";
 
-import "./custom-button.styles.scss";
-
 const CustomButton = ({
   children,
   isGoogleSignIn,
   inverted,
+  className,
   ...otherProps
-}) => (
-  <button
-    className={`
-    ${isGoogleSignIn ? "google-sign-in" : ""}
-    ${inverted ? "inverted" : ""}
-     custom-button
-     `}
-    {...otherProps}
-  >
-    {children}
-  </button>
-);
+}) => {
+  const baseClass = `min-w-[10rem] h-12 uppercase text-base font-bold
+                     cursor-pointer flex justify-center items-center`;
+
+  const extraClass = () => {
+    if (isGoogleSignIn)
+      return `bg-[#4285f4] text-white hover:bg-[#357ae8] border-none`;
+
+    if (inverted)
+      return `bg-white text-black border-[1px] border-black
+              hover:text-white hover:bg-black hover:border-none`;
+
+    return `bg-black text-white 
+            hover:bg-white hover:text-black hover:border-[1px] hover:border-black`;
+  };
+  return (
+    <button
+      className={` ${baseClass} ${extraClass()} ${className} `}
+      {...otherProps}
+    >
+      {children}
+    </button>
+  );
+};
 
 export default CustomButton;

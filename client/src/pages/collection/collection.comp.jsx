@@ -5,8 +5,6 @@ import { useSelector } from "react-redux";
 import { selectCollection } from "../../redux/shop/shop.selector";
 import CollectionItem from "../../components/collection-item/collection-item.comp";
 
-import "./collection.styles.scss";
-
 const CollectionPage = () => {
   const params = useParams();
   const collectionId = params.collectionId;
@@ -15,9 +13,9 @@ const CollectionPage = () => {
   const { title, items } = collection;
 
   return (
-    <div className="collection-page">
-      <h2 className="title">{title}</h2>
-      <div className="items">
+    <div className="">
+      <h2 className="text-4xl text-center mb-7">{title}</h2>
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {items.map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
