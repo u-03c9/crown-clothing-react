@@ -1,11 +1,13 @@
 {
   "name": "crown-clothing-react",
   "version": "0.1.0",
+  "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "axios": "^0.26.1",
     "firebase": "^9.6.8",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
