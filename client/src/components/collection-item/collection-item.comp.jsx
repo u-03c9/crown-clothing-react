@@ -14,13 +14,20 @@ const CollectionItem = ({ item }) => {
   const addItemToCartHandler = () => dispatch(addItemToCart(item));
 
   return (
-    <div className="collection-item">
-      <div className="image" style={{ backgroundImage: `url(${imageUrl})` }} />
-      <div className="collection-footer">
-        <span className="name">{name}</span>
-        <span className="price">${price}</span>
+    <div className="collection-item w-full flex flex-col h-96 items-center relative">
+      <div
+        className="image w-full h-full bg-cover bg-center"
+        style={{ backgroundImage: `url(${imageUrl})` }}
+      />
+      <div className="w-full h-fit flex justify-between text-lg">
+        <span className="grow">{name}</span>
+        <span className="w-fit">${price}</span>
       </div>
-      <CustomButton onClick={addItemToCartHandler} inverted>
+      <CustomButton
+        className="custom-button w-[80%] opacity-70 absolute top-64 "
+        onClick={addItemToCartHandler}
+        inverted
+      >
         ADD TO CART
       </CustomButton>
     </div>

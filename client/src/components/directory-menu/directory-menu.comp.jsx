@@ -5,13 +5,11 @@ import { selectDirectorySections } from "../../redux/directory/directory.selecto
 
 import MenuItem from "../menu-item/menu-item.comp";
 
-import "./directory-menu.styles.scss";
-
 const DirectoryMenu = () => {
   const sections = useSelector(selectDirectorySections);
 
   return (
-    <div className="directory-menu">
+    <div className="w-full flex flex-wrap justify-between">
       {sections.map(({ id, ...otherProps }) => (
         <MenuItem key={id} {...otherProps} />
       ))}

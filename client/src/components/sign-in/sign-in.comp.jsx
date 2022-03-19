@@ -9,8 +9,6 @@ import {
 import CustomButton from "../custom-button/custom-button.comp";
 import FormInput from "../form-input/form-input.comp";
 
-import "./sign-in.styles.scss";
-
 const SignIn = () => {
   const dispatch = useDispatch();
 
@@ -36,8 +34,8 @@ const SignIn = () => {
   const googleSignInHandler = () => dispatch(googleSignInStart());
 
   return (
-    <div className="sign-in">
-      <h2>I already have an account</h2>
+    <div className="flex flex-col w-full max-w-sm mx-auto">
+      <h2 className="text-2xl font-bold mb-3">I already have an account</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -56,7 +54,7 @@ const SignIn = () => {
           onChange={handleChange}
           required
         />
-        <div className="buttons">
+        <div className="flex flex-col md:flex-row gap-x-4 gap-y-2 justify-between">
           <CustomButton type="submit"> Sign In </CustomButton>
           <CustomButton
             type="button"

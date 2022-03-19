@@ -5,8 +5,6 @@ import { signUpStart } from "../../redux/user/user.actions";
 import CustomButton from "../custom-button/custom-button.comp";
 import FormInput from "../form-input/form-input.comp";
 
-import "./sign-up.styles.scss";
-
 const SignUp = () => {
   const dispatch = useDispatch();
 
@@ -37,10 +35,10 @@ const SignUp = () => {
   };
 
   return (
-    <div className="sign-up">
-      <h2>I do not have an account</h2>
+    <div className="flex flex-col w-full max-w-sm mx-auto">
+      <h2 className="font-bold text-2xl mb-3">I do not have an account</h2>
       <span>Sign up with your email and password</span>
-      <form onSubmit={handleSubmit} className="sign-up-form">
+      <form onSubmit={handleSubmit}>
         <FormInput
           type="text"
           name="displayName"
@@ -74,7 +72,9 @@ const SignUp = () => {
           onChange={handleChange}
           required
         />
-        <CustomButton type="submit"> SIGN UP </CustomButton>
+        <CustomButton type="submit" className="w-full">
+          SIGN UP
+        </CustomButton>
       </form>
     </div>
   );

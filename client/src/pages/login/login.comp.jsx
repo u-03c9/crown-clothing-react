@@ -3,10 +3,8 @@ import React from "react";
 import SignIn from "../../components/sign-in/sign-in.comp";
 import SignUp from "../../components/sign-up/sign-up.comp";
 
-import "./login.styles.scss";
-
 const LoginPage = () => (
-  <div className="login-page">
+  <div className="w-full flex flex-col lg:flex-row justify-center items-start gap-20">
     <SignIn />
     <SignUp />
   </div>

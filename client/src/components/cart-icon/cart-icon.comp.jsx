@@ -5,8 +5,6 @@ import { toggleCartMenu } from "../../redux/cart/cart.actions";
 import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
 import { ReactComponent as ShoppingBagIcon } from "../../assets/shopping-bag.svg";
 
-import "./cart-icon.styles.scss";
-
 const CartIcon = () => {
   const dispatch = useDispatch();
   const toggleCartMenuHandler = () => dispatch(toggleCartMenu());
@@ -14,9 +12,14 @@ const CartIcon = () => {
   const itemCount = useSelector(selectCartItemsCount);
 
   return (
-    <div className="cart-icon" onClick={toggleCartMenuHandler}>
-      <ShoppingBagIcon className="shopping-icon" />
-      <span className="item-count"> {itemCount} </span>
+    <div
+      className="w-fit h-fit relative flex pb-2 cursor-pointer select-none"
+      onClick={toggleCartMenuHandler}
+    >
+      <ShoppingBagIcon className="w-7 h-7" />
+      <span className="absolute w-full text-center text-xs bottom-2.5">
+        {itemCount}
+      </span>
     </div>
   );
 };

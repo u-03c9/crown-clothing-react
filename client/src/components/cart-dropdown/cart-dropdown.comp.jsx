@@ -8,8 +8,6 @@ import { toggleCartMenu } from "../../redux/cart/cart.actions.js";
 import CartItem from "../cart-item/cart-item.comp";
 import CustomButton from "../custom-button/custom-button.comp";
 
-import "./cart-dropdown.styles.scss";
-
 const CartDropdown = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,15 +15,18 @@ const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);
 
   return (
-    <div className="cart-dropdown">
-      <div className="cart-items">
+    <div className="absolute w-60 h-96 flex flex-col p-5 top-14 right-0 bg-white border-black border-[1px] z-20">
+      <div className="flex flex-col overflow-x-hidden overflow-y-scroll">
         {cartItems.length ? (
           cartItems.map((item) => <CartItem key={item.id} item={item} />)
         ) : (
-          <span className="empty-message">Your cart is empty</span>
+          <span className="text-lg h-full mx-auto grow">
+            Your cart is empty
+          </span>
         )}
       </div>
       <CustomButton
+        className="mt-auto"
         onClick={() => {
           dispatch(toggleCartMenu());
           navigate("/checkout");

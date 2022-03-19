@@ -10,8 +10,6 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CartIcon from "../cart-icon/cart-icon.comp";
 import CartDropdown from "../cart-dropdown/cart-dropdown.comp";
 
-import "./header.styles.scss";
-
 const Header = () => {
   const currentUser = useSelector(selectCurrentUser);
   const hidden = useSelector(selectCartHidden);
@@ -20,26 +18,20 @@ const Header = () => {
   const signOutHandler = () => dispatch(signOutStart());
 
   return (
-    <div className="header">
-      <Link to="/" className="logo-container">
-        <Logo className="logo" />
+    <div className="h-16 mb-6 mt-3 w-full flex justify-between items-center relative">
+      <Link to="/" className="h-12 w-fit">
+        <Logo />
       </Link>
 
-      <div className="options">
-        <Link className="option" to="/shop">
-          SHOP
-        </Link>
-        <Link className="option" to="/shop">
-          CONTACT
-        </Link>
+      <div className="flex-grow h-full flex items-center justify-end gap-x-2 sm:gap-x-4 md:gap-x-7 py-2.5">
+        <Link to="/shop">SHOP</Link>
+        <Link to="/shop">CONTACT</Link>
         {currentUser ? (
-          <div className="option" onClick={signOutHandler}>
+          <div className="cursor-pointer" onClick={signOutHandler}>
             SIGN OUT
           </div>
         ) : (
-          <Link className="option" to="/login">
-            SIGN IN
-          </Link>
+          <Link to="/login">SIGN IN</Link>
         )}
         <CartIcon />
       </div>

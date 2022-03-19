@@ -4,13 +4,12 @@ import { useSelector } from "react-redux";
 import { selectCollectionsForPreview } from "../../redux/shop/shop.selector.js";
 import CollectionPreview from "../../components/collection-preview/collection-preview.comp";
 
-import "./collections-overview.styles.scss";
 
 const CollectionsOverviewPage = () => {
   const collections = useSelector(selectCollectionsForPreview);
 
   return (
-    <div className="collections-overview">
+    <div className="flex flex-col">
       {collections.map(({ id, ...otherProps }) => (
         <CollectionPreview key={id} {...otherProps} />
       ))}

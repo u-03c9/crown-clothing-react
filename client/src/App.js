@@ -13,8 +13,6 @@ import CollectionsOverviewContainer from "./pages/collections-overview/collectio
 import CollectionContainer from "./pages/collection/collection.container";
 import CheckoutPage from "./pages/checkout/checkout.comp";
 
-import "./App.css";
-
 const App = () => {
   const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
@@ -24,7 +22,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="px-10 md:px-20 lg:mx-auto py-5 w-full max-w-[1290px]">
       <Header />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
