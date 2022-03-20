@@ -9,7 +9,7 @@ const DirectoryMenu = () => {
   const sections = useSelector(selectDirectorySections);
 
   return (
-    <div className="w-full flex flex-wrap justify-between">
+    <div className="w-full flex flex-wrap justify-between mt-20">
       {sections.map(({ id, ...otherProps }) => (
         <MenuItem key={id} {...otherProps} />
       ))}

@@ -7,7 +7,7 @@ const CustomButton = ({
   className,
   ...otherProps
 }) => {
-  const baseClass = `min-w-[10rem] h-12 uppercase text-base font-bold
+  const baseClass = `h-12 uppercase text-base font-bold
                      cursor-pointer flex justify-center items-center`;
 
   const extraClass = () => {

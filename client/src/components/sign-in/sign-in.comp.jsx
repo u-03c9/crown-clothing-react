@@ -55,9 +55,12 @@ const SignIn = () => {
           required
         />
         <div className="flex flex-col md:flex-row gap-x-4 gap-y-2 justify-between">
-          <CustomButton type="submit"> Sign In </CustomButton>
+          <CustomButton className="w-full" type="submit">
+            Sign In
+          </CustomButton>
           <CustomButton
             type="button"
+            className="w-full"
             onClick={googleSignInHandler}
             isGoogleSignIn
           >

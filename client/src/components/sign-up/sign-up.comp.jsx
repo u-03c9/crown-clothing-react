@@ -72,7 +72,7 @@ const SignUp = () => {
           onChange={handleChange}
           required
         />
-        <CustomButton type="submit" className="w-full">
+        <CustomButton type="submit" className="w-full md:w-1/2 mx-auto">
           SIGN UP
         </CustomButton>
       </form>

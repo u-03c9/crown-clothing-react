@@ -16,17 +16,17 @@ const CartDropdown = () => {
 
   return (
     <div className="absolute w-60 h-96 flex flex-col p-5 top-14 right-0 bg-white border-black border-[1px] z-20">
-      <div className="flex flex-col overflow-x-hidden overflow-y-scroll">
+      <div className="grow flex flex-col overflow-x-hidden overflow-y-scroll">
         {cartItems.length ? (
           cartItems.map((item) => <CartItem key={item.id} item={item} />)
         ) : (
-          <span className="text-lg h-full mx-auto grow">
+          <span className="text-lg mx-auto grow pt-[25%]">
             Your cart is empty
           </span>
         )}
       </div>
       <CustomButton
-        className="mt-auto"
+        className="mt-auto w-full py-3"
         onClick={() => {
           dispatch(toggleCartMenu());
           navigate("/checkout");

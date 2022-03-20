@@ -3,6 +3,26 @@
     display: none;
   }
 
+  .container {
+    position: relative;
+    &:before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: (175 / 117) * 100%;
+    }
+    > .image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
   &:hover {
     .image {
       opacity: 0.8;

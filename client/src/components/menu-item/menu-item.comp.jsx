@@ -6,11 +6,11 @@ import "./menu-item.styles.scss";
 const MenuItem = ({ title, imageUrl, size, linkUrl }) => {
   const navigate = useNavigate();
 
-  const large = size ? "md:h-96" : "";
+  const large = size ? "h-48 md:h-96" : "h-48 md:h60";
 
   return (
     <div
-      className={`${large} menu-item cursor-pointer min-w-[30%] h-48 md:h-60 flex flex-auto items-center justify-center overflow-hidden mt-0 mb-4 mx-2 border-[1px] border-black`}
+      className={`${large} menu-item cursor-pointer min-w-[30%] flex flex-auto items-center justify-center overflow-hidden mt-0 mb-4 mx-2 border-[1px] border-black`}
       onClick={() => navigate(linkUrl)}
     >
       <div
