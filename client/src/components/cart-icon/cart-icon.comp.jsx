@@ -7,7 +7,10 @@ import { ReactComponent as ShoppingBagIcon } from "../../assets/shopping-bag.svg
 
 const CartIcon = () => {
   const dispatch = useDispatch();
-  const toggleCartMenuHandler = () => dispatch(toggleCartMenu());
+  const toggleCartMenuHandler = (event) => {
+    event.stopPropagation();
+    dispatch(toggleCartMenu());
+  };
 
   const itemCount = useSelector(selectCartItemsCount);
 

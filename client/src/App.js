@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
+import { dismissCartMenu } from "./redux/cart/cart.actions";
 
 import Header from "./components/header/header.comp";
 import Spinner from "./components/spinner/spinner.comp";
@@ -28,8 +29,15 @@ const App = () => {
     dispatch(checkUserSession());
   }, [dispatch]);
 
+  const handleOnClick = () => {
+    dispatch(dismissCartMenu());
+  };
+
   return (
-    <div className="px-10 md:px-20 lg:mx-auto py-5 w-full max-w-[1290px]">
+    <div
+      className="px-10 md:px-20 lg:mx-auto py-5 w-full max-w-[1290px]"
+      onClick={handleOnClick}
+    >
       <Header />
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>

@@ -15,7 +15,10 @@ const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);
 
   return (
-    <div className="absolute w-60 h-96 flex flex-col p-5 top-14 right-0 bg-white border-black border-[1px] z-20">
+    <div
+      className="absolute w-60 h-96 flex flex-col p-5 top-14 right-0 bg-white border-black border-[1px] z-20"
+      onClick={(event) => event.stopPropagation()}
+    >
       <div className="grow flex flex-col overflow-x-hidden overflow-y-scroll custom-scrollbar">
         {cartItems.length ? (
           cartItems.map((item) => <CartItem key={item.id} item={item} />)
