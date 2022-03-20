@@ -25,19 +25,16 @@ const App = () => {
   const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
+  window.addEventListener("click", () => {
+    dispatch(dismissCartMenu());
+  });
+
   useEffect(() => {
     dispatch(checkUserSession());
   }, [dispatch]);
 
-  const handleOnClick = () => {
-    dispatch(dismissCartMenu());
-  };
-
   return (
-    <div
-      className="px-10 md:px-20 lg:mx-auto py-5 w-full max-w-[1290px]"
-      onClick={handleOnClick}
-    >
+    <div className="px-10 md:px-20 lg:mx-auto py-5 w-full max-w-[1290px]">
       <Header />
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
