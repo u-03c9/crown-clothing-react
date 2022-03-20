@@ -15,7 +15,7 @@ const CollectionPage = () => {
   return (
     <div className="">
       <h2 className="text-4xl text-center mb-7">{title}</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-3">
         {items.map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
