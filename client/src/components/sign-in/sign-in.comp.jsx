@@ -34,7 +34,7 @@ const SignIn = () => {
   const googleSignInHandler = () => dispatch(googleSignInStart());
 
   return (
-    <div className="flex flex-col w-full max-w-sm mx-auto">
+    <div className="flex flex-col w-full max-w-md mx-auto">
       <h2 className="text-2xl font-bold mb-3">I already have an account</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>

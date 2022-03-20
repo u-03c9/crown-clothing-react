@@ -35,7 +35,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col w-full max-w-sm mx-auto">
+    <div className="flex flex-col w-full max-w-md mx-auto">
       <h2 className="font-bold text-2xl mb-3">I do not have an account</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
