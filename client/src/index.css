@@ -7,6 +7,7 @@
   src: url("./assets/open_sans_condensed.woff2");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
