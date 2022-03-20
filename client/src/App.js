@@ -7,6 +7,7 @@ import { checkUserSession } from "./redux/user/user.actions";
 
 import Header from "./components/header/header.comp";
 import Spinner from "./components/spinner/spinner.comp";
+import ErrorBoundary from "./components/error-boundary/error-boundary.comp";
 
 const HomePage = lazy(() => import("./pages/homepage/homepage.comp"));
 const LoginPage = lazy(() => import("./pages/login/login.comp"));
@@ -30,26 +31,28 @@ const App = () => {
   return (
     <div className="px-10 md:px-20 lg:mx-auto py-5 w-full max-w-[1290px]">
       <Header />
-      <Suspense fallback={<Spinner />}>
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/checkout" element={<CheckoutPage />} />
-          <Route path="/shop" element={<ShopPage />}>
-            <Route path="/shop/" element={<CollectionsOverviewContainer />} />
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Routes>
+            <Route exact path="/" element={<HomePage />} />
+            <Route exact path="/checkout" element={<CheckoutPage />} />
+            <Route path="/shop" element={<ShopPage />}>
+              <Route path="/shop/" element={<CollectionsOverviewContainer />} />
+              <Route
+                path="/shop/:collectionId"
+                element={<CollectionContainer />}
+              />
+            </Route>
             <Route
-              path="/shop/:collectionId"
-              element={<CollectionContainer />}
+              exact
+              path="/login"
+              element={
+                currentUser ? <Navigate to="/" replace={true} /> : <LoginPage />
+              }
             />
-          </Route>
-          <Route
-            exact
-            path="/login"
-            element={
-              currentUser ? <Navigate to="/" replace={true} /> : <LoginPage />
-            }
-          />
-        </Routes>
-      </Suspense>
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
