@@ -1,6 +1,10 @@
 .collection-item {
   .custom-button {
     display: none;
+
+    @media screen and (max-width: 768px) {
+      display: flex;
+    }
   }
 
   .container {
